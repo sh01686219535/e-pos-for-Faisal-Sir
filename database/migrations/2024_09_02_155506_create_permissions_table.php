@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sub_modules', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('module_id');
             $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
-            $table->string('subModuleName');
+            $table->unsignedBigInteger('subModule_id')->nullable();
+            $table->foreign('subModule_id')->references('id')->on('sub_modules')->onDelete('cascade');
+            $table->string('permission');
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -25,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sub_modules');
+        Schema::dropIfExists('permissions');
     }
 };

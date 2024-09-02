@@ -1,6 +1,6 @@
 @extends('backend.dashboard.master')
 @section('title')
-   Sub Module
+   Permission
 @endsection
 @section('content')
     <div id="content" class="app-content p-3">
@@ -9,8 +9,8 @@
                 <div class="card">
                     <div class="card-head">
                         <div class="head-main d-flex justify-content-between">
-                            <h3>Sub Module</h3>
-                            <a href="{{ route('subModule.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Create</a>
+                            <h3>Permission</h3>
+                            <a href="{{ route('permission.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Create</a>
                         </div>
                     </div>
                     <hr>
@@ -22,6 +22,7 @@
                                         <th>S/N</th>
                                         <th>Module Name</th>
                                         <th>Sub Module Name</th>
+                                        <th>Permission</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -29,16 +30,17 @@
                                     @php
                                         $i = 1;
                                     @endphp
-                                    @foreach ($subModule as $item)
+                                    @foreach ($permission as $item)
                                         <tr>
                                             <td>#{{ $i++ }}</td>
                                             <td>{{ $item->module->moduleName ?? '' }}</td>
-                                            <td>{{ $item->subModuleName }}</td>
+                                            <td>{{ $item->subModule->subModuleName ?? ''}}</td>
+                                            <td>{{ $item->permission}}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">
-                                                    <a href="{{route('subModule.edit', $item->id)}}" class="btn btn-primary mx-1 btn-sm"><i
+                                                    <a href="{{route('permission.edit', $item->id)}}" class="btn btn-primary mx-1 btn-sm"><i
                                                             class="fas fa-edit"></i></a>
-                                                    <form action="{{ route('subModule.destroy', $item->id) }}" method="post">
+                                                    <form action="{{ route('permission.destroy', $item->id) }}" method="post">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit" class="btn btn-danger delete-item  btn-sm"><i
@@ -48,7 +50,6 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                   
                                 </tbody>
                             </table>
                         </div>

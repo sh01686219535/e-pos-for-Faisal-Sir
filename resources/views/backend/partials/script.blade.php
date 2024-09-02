@@ -84,7 +84,13 @@
     });
 </script>
 {{-- sweetalert2 --}}
-
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+</script>
 </body>
 
 <!-- Mirrored from seantheme.com/quantum/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 28 Aug 2024 12:17:53 GMT -->

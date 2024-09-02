@@ -40,8 +40,18 @@
                         </a>
                     </div>
                     <div class="menu-item ">
-                        <a href="email_detail.html" class="menu-link">
+                        <a href="{{route('permission.index')}}" class="menu-link">
                             <span class="menu-text">Permission</span>
+                        </a>
+                    </div>
+                    <div class="menu-item ">
+                        <a href="{{route('role.index')}}" class="menu-link">
+                            <span class="menu-text">Role</span>
+                        </a>
+                    </div>
+                    <div class="menu-item ">
+                        <a href="{{route('assignPermission.index')}}" class="menu-link">
+                            <span class="menu-text">Assign Permission</span>
                         </a>
                     </div>
                 </div>

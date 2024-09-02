@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Module;
+use App\Models\SubModule;
 use Illuminate\Http\Request;
 
 class SubModuleController extends Controller
@@ -13,7 +14,8 @@ class SubModuleController extends Controller
      */
     public function index()
     {
-        return view('backend.subModule.index');
+        $subModule = SubModule::all();
+        return view('backend.subModule.index',compact('subModule'));
     }
 
     /**
@@ -22,7 +24,7 @@ class SubModuleController extends Controller
     public function create()
     {
         $module = Module::all();
-        return view('backend.subModule.create',compact('module'));
+        return view('backend.subModule.create', compact('module'));
     }
 
     /**
@@ -30,7 +32,16 @@ class SubModuleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'module_id' => 'required',
+            'subModuleName' => 'required|string|max:100'
+        ]);
+        $subModule = new SubModule();
+        $subModule->module_id = $request->module_id;
+        $subModule->subModuleName = $request->subModuleName;
+        $subModule->save();
+        toastr()->success('SubModule Created Successfully.');
+        return redirect('/subModule');
     }
 
     /**
@@ -46,7 +57,9 @@ class SubModuleController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $module = Module::all();
+        $subModule = SubModule::findOrFail($id);
+        return view('backend.subModule.edit', compact('module','subModule'));
     }
 
     /**
@@ -54,7 +67,16 @@ class SubModuleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'module_id' => 'required',
+            'subModuleName' => 'required|string|max:100'
+        ]);
+        $subModule = SubModule::findOrFail($id);
+        $subModule->module_id = $request->module_id;
+        $subModule->subModuleName = $request->subModuleName;
+        $subModule->save();
+        toastr()->success('SubModule Updated Successfully');
+        return redirect('/subModule');
     }
 
     /**
@@ -62,6 +84,9 @@ class SubModuleController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $subModule = SubModule::findORFail($id);
+        $subModule->delete();
+        toastr()->error('SubModule Deleted Successfully');
+        return back();
     }
 }
