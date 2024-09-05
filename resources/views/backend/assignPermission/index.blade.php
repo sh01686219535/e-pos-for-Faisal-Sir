@@ -19,16 +19,30 @@
                             <table class="table table-hover table-bordered" id="example">
                                 <thead>
                                     <tr>
-                                        <th>S/N</th>
-                                        <th>Role</th>
-                                        <th>Action</th>
+                                        <th>SI</th>
+                                        <th>Role Name</th>
+                                        <th>Permission Name</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @php
-                                        $i = 1;
-                                    @endphp
-                                   
+                                    @php $i = 1 @endphp
+        
+                                    @forelse ($role as $item)
+                                    <tr>
+                                        <td>{{$i++}}</td>
+        
+                                        <td> {{ $item->role_name }}</td>
+                                        <td> @foreach($item->permissions as $permission)
+                                            <button class="btn btn-sm btn-success"><span style="font-size:10px;"> {{$permission->permission_name}} </span></button>
+                                            @endforeach
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('showEdit-assign-permission',$item->id) }}" title="Edit" class="btn btn-primary"><i class="fa-regular fa-pen-to-square"></i></a>
+                                            <a href="{{ route('delete-assign-permission',$item->id) }}" title="Delete" class="btn btn-danger" id="delete"><i class="fa-solid fa-trash"></i></a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

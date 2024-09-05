@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AssignPermission;
+use App\Models\Module;
 use App\Models\Permission;
 use App\Models\Role;
+use App\Models\RolePermission;
 use Illuminate\Http\Request;
 
 class AssignPermissionController extends Controller
@@ -14,7 +17,9 @@ class AssignPermissionController extends Controller
      */
     public function index()
     {
-        return view('backend.assignPermission.index');
+        $role = Role::all();
+        $permissionAssign = AssignPermission::all();
+        return view('backend.assignPermission.index', compact('role', 'permissionAssign'));
     }
 
     /**
@@ -23,17 +28,24 @@ class AssignPermissionController extends Controller
     public function create()
     {
         $role = Role::all();
-        $permission = Permission::all();
-        return view('backend.assignPermission.create',compact('role','permission'));
-
+        $module = Module::with('subModule.permission')->get();
+        return view('backend.assignPermission.create', compact('role', 'module'));
     }
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        foreach ($request->permission_id as $permission) {
+            $permissionAssign = new RolePermission();
+            $permissionAssign->role_id = $request->role_id;
+            $permissionAssign->permission_id = $permission;
+            $permissionAssign->save();
+        }
+        toastr()->success('Assign Permission Created Successfully');
+        return redirect('/assignPermission');
     }
 
     /**

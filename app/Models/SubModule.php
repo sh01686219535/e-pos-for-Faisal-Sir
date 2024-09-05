@@ -12,4 +12,9 @@ class SubModule extends Model
     public function module(){
         return $this->belongsTo(Module::class, 'module_id');
     }
+    // Define the relationship with Permission
+    public function permission()
+    {
+        return $this->hasMany(Permission::class, 'subModule_id');
+    }
 }
