@@ -14,8 +14,10 @@ class SubModuleController extends Controller
      */
     public function index()
     {
+        $data = array();
+        $data['active_menu'] = 'subModule';
         $subModule = SubModule::all();
-        return view('backend.subModule.index',compact('subModule'));
+        return view('backend.subModule.index',compact('subModule','data'));
     }
 
     /**
@@ -23,8 +25,10 @@ class SubModuleController extends Controller
      */
     public function create()
     {
+        $data = array();
+        $data['active_menu'] = 'subModule';
         $module = Module::all();
-        return view('backend.subModule.create', compact('module'));
+        return view('backend.subModule.create', compact('module','data'));
     }
 
     /**
@@ -57,9 +61,11 @@ class SubModuleController extends Controller
      */
     public function edit(string $id)
     {
+        $data = array();
+        $data['active_menu'] = 'subModule';
         $module = Module::all();
         $subModule = SubModule::findOrFail($id);
-        return view('backend.subModule.edit', compact('module','subModule'));
+        return view('backend.subModule.edit', compact('module','subModule','data'));
     }
 
     /**

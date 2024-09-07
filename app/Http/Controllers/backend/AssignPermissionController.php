@@ -17,9 +17,12 @@ class AssignPermissionController extends Controller
      */
     public function index()
     {
+        $data = array();
+        $data['active_menu'] = 'assignPermission';
+        $data['page_title'] = 'Assign List';
         $role = Role::all();
         $permissionAssign = AssignPermission::all();
-        return view('backend.assignPermission.index', compact('role', 'permissionAssign'));
+        return view('backend.assignPermission.index', compact('data','role', 'permissionAssign'));
     }
 
     /**
@@ -27,9 +30,12 @@ class AssignPermissionController extends Controller
      */
     public function create()
     {
+        $data = array();
+        $data['active_menu'] = 'assignPermission';
+        $data['page_title'] = 'Create Assign';
         $role = Role::all();
         $module = Module::with('subModule.permission')->get();
-        return view('backend.assignPermission.create', compact('role', 'module'));
+        return view('backend.assignPermission.create', compact('data','role', 'module'));
     }
 
 

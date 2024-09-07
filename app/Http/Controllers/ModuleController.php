@@ -12,8 +12,10 @@ class ModuleController extends Controller
      */
     public function index()
     {
+        $data = array();
+        $data['active_menu'] = 'module';
         $module = Module::all();
-        return view('backend.module.index', compact('module'));
+        return view('backend.module.index', compact('data','module'));
     }
 
     /**
@@ -21,7 +23,9 @@ class ModuleController extends Controller
      */
     public function create()
     {
-        return view('backend.module.create');
+        $data = array();
+        $data['active_menu'] = 'module';
+        return view('backend.module.create',compact('data'));
     }
 
     /**
@@ -52,8 +56,10 @@ class ModuleController extends Controller
      */
     public function edit(string $id)
     {
+        $data = array();
+        $data['active_menu'] = 'module';
         $module = Module::findOrFail($id);
-        return view('backend.module.edit', compact('module'));
+        return view('backend.module.edit', compact('module','data'));
     }
 
     /**

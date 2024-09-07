@@ -9,6 +9,9 @@ class DashboardController extends Controller
 {
     //index
     public function index(){
-        return view('backend.dashboard.home');
+        $data = array();
+        $data['active_menu'] = 'dashboard';
+        $data['page_title'] = 'Dashboard';
+        return view('backend.dashboard.home',compact('data'));
     }
 }

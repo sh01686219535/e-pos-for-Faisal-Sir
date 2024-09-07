@@ -16,8 +16,10 @@ class PermissionController extends Controller
      */
     public function index()
     {
+        $data = array();
+        $data['active_menu'] = 'permission';
         $permission = Permission::all();
-        return view('backend.permission.index', compact('permission'));
+        return view('backend.permission.index', compact('permission','data'));
     }
 
     /**
@@ -25,9 +27,11 @@ class PermissionController extends Controller
      */
     public function create()
     {
+        $data = array();
+        $data['active_menu'] = 'permission';
         $module = Module::all();
         $subModule = SubModule::all();
-        return view('backend.permission.create', compact('module', 'subModule'));
+        return view('backend.permission.create', compact('module', 'subModule','data'));
     }
 
     /**
@@ -60,10 +64,12 @@ class PermissionController extends Controller
      */
     public function edit(string $id)
     {
+        $data = array();
+        $data['active_menu'] = 'permission';
         $module = Module::all();
         $subModule = SubModule::all();
         $permission = Permission::findOrFail($id);
-        return view('backend.permission.edit', compact('module', 'subModule', 'permission'));
+        return view('backend.permission.edit', compact('module', 'subModule', 'permission','data'));
     }
 
     /**

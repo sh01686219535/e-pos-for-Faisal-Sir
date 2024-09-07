@@ -13,8 +13,10 @@ class RoleController extends Controller
      */
     public function index()
     {
+        $data = array();
+        $data['active_menu'] = 'role';
         $role = Role::all();
-        return view('backend.role.index',compact('role'));
+        return view('backend.role.index',compact('role','data'));
     }
 
     /**
@@ -22,7 +24,9 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('backend.role.create');
+        $data = array();
+        $data['active_menu'] = 'role';
+        return view('backend.role.create',compact('data'));
     }
 
     /**
@@ -53,8 +57,10 @@ class RoleController extends Controller
      */
     public function edit(string $id)
     {
+        $data = array();
+        $data['active_menu'] = 'role';
         $role = Role::findOrFail($id);
-        return view('backend.role.edit',compact('role'));
+        return view('backend.role.edit',compact('role','data'));
 
     }
 

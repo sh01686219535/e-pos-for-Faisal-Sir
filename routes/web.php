@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\AjaxController;
 use App\Http\Controllers\backend\AssignPermissionController;
+use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\PermissionController;
 use App\Http\Controllers\backend\RoleController;
@@ -28,6 +29,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::resource('role',RoleController::class);
     //assignPermission
     Route::resource('assignPermission',AssignPermissionController::class);
+    //brand
+    Route::resource('brand',BrandController::class);
     //ajax route
     //get-subModule route
     route::get('/get-subModule',[AjaxController::class,'getSubModule'])->name('get-subModule');

@@ -6,7 +6,7 @@
 <div id="content" class="app-content p-3">
     <div class="head-main d-flex justify-content-between my-3">
         <h3>Role Create</h3>
-        <a href="{{route('module.index')}}" class="btn btn-info "><i class="fas fa-list"></i> Role List</a>
+        <a href="{{route('role.index')}}" class="btn btn-info "><i class="fas fa-list"></i> Role List</a>
     </div>
         <div class="card">
             <div class="card-header with-btn">
