@@ -21,12 +21,13 @@
             </div>
             <div class="card-body">
                 @include('error')
-                <form action="{{ route('brand.store') }}" method="post">
+                <form action="{{ route('brand.store') }}" method="post" id="brandForm">
                     @csrf
                     <div class="mb-3 row">
                         <label for="brandName" class="col-sm-2 col-form-label">Brand Name</label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control" id="brandName" name="brandName">
+                            <span class="text-danger" id="brandNameError"></span>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -37,13 +38,15 @@
                                 <option value="inActive">Inactive</option>
                             </select>
                         </div>
+                        <span class="text-danger" id="statusError"></span>
                     </div>
                     <div class="mb-3 row">
                         <label for="brandImage" class="col-sm-2 col-form-label">Brand Image</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control" id="brandImage" name="brandImage">
                             <img style="width:100px;height:100px" id="showImage"
-                                src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt="" class="image-style rounded-circle my-3">
+                                src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt=""
+                                class="image-style rounded-circle my-3">
                         </div>
                     </div>
                     <div class="form-group row">
@@ -71,6 +74,50 @@
                 localStorage.setItem('imageData', imageData);
             }
             reader.readAsDataURL(e.target.files['0']);
+        });
+        //form Validation
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('brandForm');
+
+            const brandName = document.getElementById('brandName');
+            const status = document.getElementById('status');
+
+            const brandNameError = document.getElementById('brandNameError');
+            const statusError = document.getElementById('statusError');
+            brandName.addEventListener('input', function() {
+                if (!brandName.value.trim()) {
+                    brandNameError.textContent = 'Please enter your Brand Name.';
+                    brandNameError.style.display = 'block';
+                    brandName.classList.add('invalid');
+                } else if (!/^[a-zA-Z\s]+$/.test(brandName.value)) { 
+                    brandNameError.textContent = 'Brand Name should contain only letters and spaces.';
+                    brandNameError.style.display = 'block';
+                    brandName.classList.add('invalid');
+                } else {
+                    brandNameError.style.display = 'none';
+                    brandName.classList.remove('invalid');
+                }
+            });
+
+            status.addEventListener('change', function() { 
+                if (!status.value.trim()) {
+                    statusError.textContent = 'Please Select Status.';
+                    statusError.style.display = 'block';
+                    status.classList.add('invalid');
+                } else {
+                    statusError.style.display = 'none';
+                    status.classList.remove('invalid');
+                }
+            });
+            form.addEventListener('submit', function(event) {
+                brandName.dispatchEvent(new Event('input'));
+                status.dispatchEvent(new Event('change'));
+                if (document.querySelectorAll('.invalid').length === 0) {
+                    form.submit();
+                } else {
+                    event.preventDefault();
+                }
+            });
         });
     </script>
 @endpush
