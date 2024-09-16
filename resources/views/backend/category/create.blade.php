@@ -6,7 +6,7 @@ Create Category
 <div id="content" class="app-content p-3">
     <div class="head-main d-flex justify-content-between my-3">
         <h3>Category Create</h3>
-        <a href="{{ route('subModule.index') }}" class="btn btn-info "><i class="fas fa-list"></i>Category List</a>
+        <a href="{{ route('category.index') }}" class="btn btn-info "><i class="fas fa-list"></i>Category List</a>
     </div>
     <div class="card">
         <div class="card-header with-btn">
@@ -37,10 +37,13 @@ Create Category
                     <label for="parent_id" class="col-sm-2 col-form-label">Category Select</label>
                     <div class="col-sm-10">
                         <select class="form-select" id="parent_id" name="parent_id">
-                            <option selected>Select Category</option>
-                            <!-- @foreach ($module as $item)
-                                <option value="{{$item->id}}">{{$item->moduleName}}</option>
-                                @endforeach -->
+                           <option value="">Select</option>
+                           @foreach($category as $item)
+                           <option value="{{$item->id}}">{{$item->categoryName ?? ''}}</option>
+                           @if(count($item->childrenRecursive) > 0)
+                            @include('backend.category.subCategory',['subcategory' => $item->childrenRecursive, 'parent'=> $item->categoryName ?? ''])
+                           @endif
+                           @endforeach
                         </select>
                     </div>
                 </div>

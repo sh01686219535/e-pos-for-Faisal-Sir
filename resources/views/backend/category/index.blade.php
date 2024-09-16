@@ -1,6 +1,6 @@
 @extends('backend.dashboard.master')
 @section('title')
-   Sub Module
+Category
 @endsection
 @section('content')
     <div id="content" class="app-content p-3">
@@ -9,8 +9,8 @@
                 <div class="card">
                     <div class="card-head">
                         <div class="head-main d-flex justify-content-between">
-                            <h3>Sub Module</h3>
-                            <a href="{{ route('subModule.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Create</a>
+                            <h3>Category</h3>
+                            <a href="{{ route('category.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Create</a>
                         </div>
                     </div>
                     <hr>

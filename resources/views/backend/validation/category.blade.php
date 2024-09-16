@@ -6,11 +6,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
     categoryName.addEventListener('input', function() {
         if (!categoryName.value.trim()) {
-            categoryNameError.textContent = 'Please enter your Brand Name.';
+            categoryNameError.textContent = 'Please enter your Category.';
             categoryNameError.style.display = 'block';
             categoryName.classList.add('invalid');
         } else if (!/^[a-zA-Z\s]+$/.test(categoryName.value)) {
-            categoryNameError.textContent = 'Brand Name should contain only letters and spaces.';
+            categoryNameError.textContent = 'Category Name should contain only letters and spaces.';
             categoryNameError.style.display = 'block';
             categoryName.classList.add('invalid');
         } else {

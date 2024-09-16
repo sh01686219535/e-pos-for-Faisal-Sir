@@ -4,6 +4,7 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class CategoryController extends Controller
 {
@@ -23,7 +24,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $data = array();
+        $data['active_menu'] = 'category';
+        $category = Category::with('childrenRecursive')->whereNull('parent_id')->get();
+        return view('backend.category.create',compact('data','category'));
     }
 
     /**
@@ -31,7 +35,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'categoryName'=>'required'
+        ]);
+      
+        $category = new Category();
+        $category->categoryName = $request->categoryName;
+        if(isset($request->parent_id)){
+            $category->parent_id = $request->parent_id;
+        }
+        $category->save();
+        toastr()->success('Category Created Successfully');
+        return redirect()->route('category.index');
     }
 
     /**
