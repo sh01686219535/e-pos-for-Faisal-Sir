@@ -12,7 +12,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+      $data = array();
+      $data['active_menu'] = 'category';
+      return view('backend.category.index',compact('data'));
+        
     }
 
     /**
