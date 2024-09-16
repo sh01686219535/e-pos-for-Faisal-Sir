@@ -1,6 +1,6 @@
 @extends('backend.dashboard.master')
 @section('title')
-Brand
+Supplier
 @endsection
 @section('content')
 <div id="content" class="app-content p-3">
@@ -9,8 +9,8 @@ Brand
             <div class="card">
                 <div class="card-head">
                     <div class="head-main d-flex justify-content-between">
-                        <h3>Brand</h3>
-                        <a href="{{ route('brand.create') }}" class="btn btn-info"><i class="fas fa-plus"></i>
+                        <h3>Supplier</h3>
+                        <a href="{{ route('supplier.create') }}" class="btn btn-info"><i class="fas fa-plus"></i>
                             Create</a>
                     </div>
                 </div>
@@ -21,36 +21,41 @@ Brand
                             <thead>
                                 <tr>
                                     <th>S/N</th>
-                                    <th>Brand Name</th>
-                                    <th>Status</th>
+                                    <th>Name</th>
+                                    <th>Address</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Tin Number</th>
+                                    <th>Trade Number</th>
+                                    <th>Bank Ac No.</th>
+                                    <th>Emergency</th>
                                     <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
+                            @php
                                 $i = 1;
                                 @endphp
-                                @foreach($brand as $item)
+                                @foreach($supplier as $item)
                                 <tr>
                                     <td>#{{$i++}}</td>
-                                    <td>{{$item->brandName}}</td>
+                                    <td>{{$item->supplierName}}</td>
+                                    <td>{{$item->supplierAddress}}</td>
+                                    <td>{{$item->phone}}</td>
+                                    <td>{{$item->email}}</td>
+                                    <td>{{$item->tinNumber}}</td>
+                                    <td>{{$item->tradeLicense}}</td>
+                                    <td>{{$item->bankAcNo}}</td>
+                                    <td>{{$item->emergencyContact}}</td>
                                     <td>
-                                        @if($item->status == 'active')
-                                        <span class="badge text-bg-success">{{$item->status}}</span>
-                                        @elseif($item->status == 'inActive')
-                                        <span class="badge text-bg-danger">{{$item->status}}</span>
-                                        @endif
-
-                                    </td>
-                                    <td>
-                                        <img src="{{asset($item->brandImage)}}" class="img-height-50" alt="">
+                                        <img src="{{asset($item->image)}}" class="img-height-50" alt="">
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-start">
-                                            <a href="{{route('brand.edit', $item->id)}}"
+                                            <a href="{{route('supplier.edit', $item->id)}}"
                                                 class="btn btn-primary mx-1 btn-sm"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('brand.destroy', $item->id) }}" method="post">
+                                            <form action="{{ route('supplier.destroy', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger delete-item  btn-sm"><i

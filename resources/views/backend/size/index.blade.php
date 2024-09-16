@@ -1,6 +1,6 @@
 @extends('backend.dashboard.master')
 @section('title')
-Brand
+Size
 @endsection
 @section('content')
 <div id="content" class="app-content p-3">
@@ -9,8 +9,8 @@ Brand
             <div class="card">
                 <div class="card-head">
                     <div class="head-main d-flex justify-content-between">
-                        <h3>Brand</h3>
-                        <a href="{{ route('brand.create') }}" class="btn btn-info"><i class="fas fa-plus"></i>
+                        <h3>Size</h3>
+                        <a href="{{ route('size.create') }}" class="btn btn-info"><i class="fas fa-plus"></i>
                             Create</a>
                     </div>
                 </div>
@@ -21,20 +21,19 @@ Brand
                             <thead>
                                 <tr>
                                     <th>S/N</th>
-                                    <th>Brand Name</th>
+                                    <th>Size Name</th>
                                     <th>Status</th>
-                                    <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
+                            @php
                                 $i = 1;
                                 @endphp
-                                @foreach($brand as $item)
+                                @foreach($size as $item)
                                 <tr>
                                     <td>#{{$i++}}</td>
-                                    <td>{{$item->brandName}}</td>
+                                    <td>{{$item->sizeName}}</td>
                                     <td>
                                         @if($item->status == 'active')
                                         <span class="badge text-bg-success">{{$item->status}}</span>
@@ -44,13 +43,10 @@ Brand
 
                                     </td>
                                     <td>
-                                        <img src="{{asset($item->brandImage)}}" class="img-height-50" alt="">
-                                    </td>
-                                    <td>
                                         <div class="d-flex justify-content-start">
-                                            <a href="{{route('brand.edit', $item->id)}}"
+                                            <a href="{{route('size.edit', $item->id)}}"
                                                 class="btn btn-primary mx-1 btn-sm"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('brand.destroy', $item->id) }}" method="post">
+                                            <form action="{{ route('size.destroy', $item->id) }}" method="post">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit" class="btn btn-danger delete-item  btn-sm"><i

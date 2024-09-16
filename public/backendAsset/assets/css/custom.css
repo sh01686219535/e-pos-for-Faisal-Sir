@@ -10,3 +10,11 @@ ul.menu-submenu {
 li.menu-item {
     margin: 0; 
 }
+.img-height{
+    height: 100px;
+    width: 100px;
+}
+.img-height-50{
+    height: 50px;
+    width: 50px;
+}

@@ -1,6 +1,6 @@
 @extends('backend.dashboard.master')
 @section('title')
-Create Brand
+Update Brand
 @endsection
 @section('content')
 <div id="content" class="app-content p-3">
@@ -24,12 +24,13 @@ Create Brand
         </div>
         <div class="card-body">
             @include('error')
-            <form action="{{ route('brand.store') }}" method="post" id="brandForm" enctype="multipart/form-data">
+            <form action="{{ route('brand.update',$brand->id) }}" method="post" id="brandForm" enctype="multipart/form-data">
                 @csrf
+                @method('PUT')
                 <div class="mb-3 row">
                     <label for="brandName" class="col-sm-2 col-form-label">Brand Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="brandName" name="brandName">
+                        <input type="text" class="form-control" id="brandName" name="brandName" value="{{$brand->brandName}}">
                         <span class="text-danger" id="brandNameError"></span>
                     </div>
                 </div>
@@ -37,8 +38,8 @@ Create Brand
                     <label for="status" class="col-sm-2 col-form-label">Status</label>
                     <div class="col-sm-10">
                         <select class="form-control" id="status" name="status">
-                            <option value="active">Active</option>
-                            <option value="inActive">Inactive</option>
+                            <option value="active"{{$brand->status =='active' ? 'selected' : ''}}>Active</option>
+                            <option value="inActive"{{$brand->status =='inActive' ? 'selected' : ''}}>Inactive</option>
                         </select>
                     </div>
                     <span class="text-danger" id="statusError"></span>
@@ -47,9 +48,13 @@ Create Brand
                     <label for="brandImage" class="col-sm-2 col-form-label">Brand Image</label>
                     <div class="col-sm-10">
                         <input type="file" class="form-control" id="brandImage" name="brandImage">
+                        @if($brand->brandImage)
+                        <img src="{{asset($brand->brandImage)}}" alt="" class="image-style rounded-circle my-3 img-height" id="showImage">
+                        @else
                         <img id="showImage"
                             src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt=""
                             class="image-style rounded-circle my-3 img-height">
+                        @endif
                     </div>
                 </div>
                 <div class="form-group row">
