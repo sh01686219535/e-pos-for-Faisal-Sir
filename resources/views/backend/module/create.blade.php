@@ -24,9 +24,9 @@
                 <form action="{{route('module.store')}}" method="post">
                    @csrf
                     <div class="mb-3 row">
-                        <label for="moduleName" class="col-sm-2 col-form-label">Module Name</label>
+                        <label for="module_name" class="col-sm-2 col-form-label">Module Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="moduleName" name="moduleName">
+                            <input type="text" class="form-control" id="moduleName" name="module_name">
                         </div>
                     </div>
                     <div class="form-group row">

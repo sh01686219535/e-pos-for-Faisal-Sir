@@ -34,7 +34,7 @@ Brand
                                 @foreach($brand as $item)
                                 <tr>
                                     <td>#{{$i++}}</td>
-                                    <td>{{$item->brandName}}</td>
+                                    <td>{{$item->brand_name}}</td>
                                     <td>
                                         @if($item->status == 'active')
                                         <span class="badge text-bg-success">{{$item->status}}</span>
@@ -44,7 +44,7 @@ Brand
 
                                     </td>
                                     <td>
-                                        <img src="{{asset($item->brandImage)}}" class="img-height-50" alt="">
+                                        <img src="{{asset($item->brand_image)}}" class="img-height-50" alt="">
                                     </td>
                                     <td>
                                         <div class="d-flex justify-content-start">

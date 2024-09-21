@@ -38,19 +38,19 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'brandName' => 'required|string|max:200',
+            'brand_name' => 'required|string|max:200',
             'status' => 'required|string|max:200',
-            'brandImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'brand_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
         $brand = new Brand();
         
-        if ($request->hasFile('brandImage')) {
-            $bannerImg = $this->uploadImage($request, 'brandImage', 'brandImages');
-            $brand->brandImage = $bannerImg;
+        if ($request->hasFile('brand_image')) {
+            $bannerImg = $this->uploadImage($request, 'brand_image', 'brandImages');
+            $brand->brand_image = $bannerImg;
         }
         
-        $brand->brandName = $request->brandName;
+        $brand->brand_name = $request->brand_name;
         $brand->status = $request->status;
         $brand->save();
         
@@ -83,21 +83,21 @@ class BrandController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'brandName' => 'required|string|max:200',
+            'brand_name' => 'required|string|max:200',
             'status' => 'required|string|max:200',
-            'brandImage' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'brand_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
     
         $brand = Brand::findOrFail($id);
         
-        $oldImagePath = $brand->brandImage;
+        $oldImagePath = $brand->brand_image;
     
-        if ($request->hasFile('brandImage')) {
-            $bannerImg = $this->updadeImage($request, 'brandImage', 'brandImages', $oldImagePath);
-            $brand->brandImage = $bannerImg;
+        if ($request->hasFile('brand_image')) {
+            $bannerImg = $this->updadeImage($request, 'brand_image', 'brandImages', $oldImagePath);
+            $brand->brand_image = $bannerImg;
         }
         
-        $brand->brandName = $request->brandName;
+        $brand->brand_name = $request->brand_name;
         $brand->status = $request->status;
         $brand->save();
         
@@ -112,8 +112,8 @@ class BrandController extends Controller
     public function destroy(string $id)
     {
         $brand = Brand::find($id);
-        if (File::exists(public_path($brand->brandImage))) {
-            File::delete(public_path($brand->brandImage));
+        if (File::exists(public_path($brand->brand_image))) {
+            File::delete(public_path($brand->brand_image));
         }
         $brand->delete();
         toastr()->success('Brand Deleted Successfully');

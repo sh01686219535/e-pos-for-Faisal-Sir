@@ -38,7 +38,7 @@ class RoleController extends Controller
             'roleName'=>'required|string|max:100'
         ]);
         $role = new Role();
-        $role->roleName = $request->roleName;
+        $role->role_name = $request->role_name;
         $role->save();
         toastr()->success('Role Created Successfully');
         return redirect('/role');
@@ -73,7 +73,7 @@ class RoleController extends Controller
             'roleName'=>'required|string|max:100'
         ]);
         $role = Role::findOrFail($id);
-        $role->roleName = $request->roleName;
+        $role->role_name = $request->role_name;
         $role->save();
         toastr()->success('Role Updated Successfully');
         return redirect('/role');

@@ -41,12 +41,12 @@ class PermissionController extends Controller
     {
         $request->validate([
             'module_id' => 'required',
-            'subModule_id' => 'required',
+            'sub_module_id' => 'required',
             'permission' => 'required'
         ]);
         $permission = new Permission();
         $permission->module_id = $request->module_id;
-        $permission->subModule_id = $request->subModule_id;
+        $permission->sub_module_id = $request->sub_module_id;
         $permission->permission = $request->permission;
         $permission->slug = Str::slug($request->permission);
         $permission->save();
@@ -84,7 +84,7 @@ class PermissionController extends Controller
         ]);
         $permission = Permission::findOrFail($id);
         $permission->module_id = $request->module_id;
-        $permission->subModule_id = $request->subModule_id;
+        $permission->sub_module_id = $request->sub_module_id;
         $permission->permission = $request->permission;
         $permission->slug = Str::slug($request->permission);
         $permission->save();

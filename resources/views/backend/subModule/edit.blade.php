@@ -6,7 +6,7 @@
     <div id="content" class="app-content p-3">
         <div class="head-main d-flex justify-content-between my-3">
             <h3>Sub Module Update</h3>
-            <a href="{{ route('subModule.index') }}" class="btn btn-info "><i class="fas fa-list"></i>Sub Module List</a>
+            <a href="{{ route('sub_module.index') }}" class="btn btn-info "><i class="fas fa-list"></i>Sub Module List</a>
         </div>
         <div class="card">
             <div class="card-header with-btn">
@@ -21,7 +21,7 @@
             </div>
             <div class="card-body">
                 @include('error')
-                <form action="{{ route('subModule.update',$subModule->id) }}" method="post">
+                <form action="{{ route('sub_module.update',$subModule->id) }}" method="post">
                     @csrf
                     @method('PUT')
                     <div class="mb-3 row">
@@ -30,15 +30,15 @@
                             <select class="form-select" id="module_id" name="module_id">
                                 <option selected>Select Module</option>
                                 @foreach ($module as $item)
-                                <option value="{{$item->id}}" {{$subModule->module_id == $item->id ? 'selected' : ''}}>{{$item->moduleName}}</option>
+                                <option value="{{$item->id}}" {{$subModule->module_id == $item->id ? 'selected' : ''}}>{{$item->module_name}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="subModuleName" class="col-sm-2 col-form-label">Sub Module Name</label>
+                        <label for="sub_module_name" class="col-sm-2 col-form-label">Sub Module Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="subModuleName" value="{{$subModule->subModuleName}}" name="subModuleName">
+                            <input type="text" class="form-control" id="sub_nodule_name" value="{{$subModule->sub_module_name}}" name="sub_module_name">
                         </div>
                     </div>
             </div>

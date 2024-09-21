@@ -10,7 +10,7 @@
                     <div class="card-head">
                         <div class="head-main d-flex justify-content-between">
                             <h3>Sub Module</h3>
-                            <a href="{{ route('subModule.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Create</a>
+                            <a href="{{ route('sub_module.create') }}" class="btn btn-info"><i class="fas fa-plus"></i> Create</a>
                         </div>
                     </div>
                     <hr>
@@ -32,8 +32,8 @@
                                     @foreach ($subModule as $item)
                                         <tr>
                                             <td>#{{ $i++ }}</td>
-                                            <td>{{ $item->module->moduleName ?? '' }}</td>
-                                            <td>{{ $item->subModuleName }}</td>
+                                            <td>{{ $item->module->module_name ?? '' }}</td>
+                                            <td>{{ $item->sub_module_name }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">
                                                     <a href="{{route('subModule.edit', $item->id)}}" class="btn btn-primary mx-1 btn-sm"><i

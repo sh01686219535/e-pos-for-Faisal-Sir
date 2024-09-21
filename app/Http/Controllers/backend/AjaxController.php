@@ -15,7 +15,7 @@ class AjaxController extends Controller
         $subModules = SubModule::where('module_id', $moduleId)->get(); 
         $html = '<option value="">Select Module</option>'; 
         foreach ($subModules as $value) {
-            $html .= '<option value="' . $value->id . '">' . $value->subModuleName . '</option>'; 
+            $html .= '<option value="' . $value->id . '">' . $value->sub_module_name . '</option>'; 
         }
         return response()->json($html, 200);
     }

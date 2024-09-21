@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('module_id');
             $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
-            $table->unsignedBigInteger('subModule_id')->nullable();
-            $table->foreign('subModule_id')->references('id')->on('sub_modules')->onDelete('cascade');
+            $table->unsignedBigInteger('sub_module_id')->nullable();
+            $table->foreign('sub_module_id')->references('id')->on('sub_modules')->onDelete('cascade');
             $table->string('permission');
             $table->string('slug');
             $table->timestamps();

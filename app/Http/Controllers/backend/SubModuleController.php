@@ -38,11 +38,11 @@ class SubModuleController extends Controller
     {
         $request->validate([
             'module_id' => 'required',
-            'subModuleName' => 'required|string|max:100'
+            'sub_module_name' => 'required|string|max:100'
         ]);
         $subModule = new SubModule();
         $subModule->module_id = $request->module_id;
-        $subModule->subModuleName = $request->subModuleName;
+        $subModule->sub_module_name = $request->sub_module_name;
         $subModule->save();
         toastr()->success('SubModule Created Successfully.');
         return redirect('/subModule');
@@ -75,11 +75,11 @@ class SubModuleController extends Controller
     {
         $request->validate([
             'module_id' => 'required',
-            'subModuleName' => 'required|string|max:100'
+            'sub_module_name' => 'required|string|max:100'
         ]);
         $subModule = SubModule::findOrFail($id);
         $subModule->module_id = $request->module_id;
-        $subModule->subModuleName = $request->subModuleName;
+        $subModule->sub_module_name = $request->sub_module_name;
         $subModule->save();
         toastr()->success('SubModule Updated Successfully');
         return redirect('/subModule');

@@ -37,7 +37,7 @@ class ModuleController extends Controller
             'moduleName' => 'required|string|max:100|regex:/^[^#]+$/',
         ]);
         $module = new Module();
-        $module->moduleName = $request->moduleName;
+        $module->module_name = $request->module_name;
         $module->save();
         toastr()->success('Module Created Successfully.');
         return redirect('/module');
@@ -71,7 +71,7 @@ class ModuleController extends Controller
             'moduleName' => 'required|string|max:100|regex:/^[^#]+$/',
         ]);
         $module = Module::findOrFail($id);
-        $module->moduleName = $request->moduleName;
+        $module->module_name = $request->module_name;
         $module->save();
         toastr()->success('Module Updated Successfully.');
         return redirect('/module');

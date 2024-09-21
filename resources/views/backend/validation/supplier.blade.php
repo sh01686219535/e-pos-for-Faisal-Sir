@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('brandForm');
 
-    const supplierName = document.getElementById('supplierName');
-    const supplierAddress = document.getElementById('supplierAddress');
+    const supplierName = document.getElementById('supplier_name');
+    const supplierAddress = document.getElementById('supplier_address');
     const phone = document.getElementById('phone');
     const email = document.getElementById('email');
-    const tinNumber = document.getElementById('tinNumber');
-    const tradeLicense = document.getElementById('tradeLicense');
-    const bankAcNo = document.getElementById('bankAcNo');
-    const emergencyContact = document.getElementById('emergencyContact');
+    const tinNumber = document.getElementById('tin_number');
+    const tradeLicense = document.getElementById('trade_license');
+    const bankAcNo = document.getElementById('bank_ac_no');
+    const emergencyContact = document.getElementById('emergency_contact');
 
     const supplierNameError = document.getElementById('supplierNameError');
     const supplierAddressError = document.getElementById('supplierAddressError');

@@ -27,9 +27,9 @@ Create Category
             <form action="{{ route('category.store') }}" method="post" id="brandForm">
                 @csrf
                 <div class="mb-3 row">
-                    <label for="categoryName" class="col-sm-2 col-form-label">Category Name</label>
+                    <label for="category_name" class="col-sm-2 col-form-label">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="categoryName" name="categoryName">
+                        <input type="text" class="form-control" id="category_name" name="category_name">
                         <span class="text-danger" id="categoryNameError"></span>
                     </div>
                 </div>
@@ -39,9 +39,9 @@ Create Category
                         <select class="form-select" id="parent_id" name="parent_id">
                            <option value="">Select</option>
                            @foreach($category as $item)
-                           <option value="{{$item->id}}">{{$item->categoryName ?? ''}}</option>
+                           <option value="{{$item->id}}">{{$item->category_name ?? ''}}</option>
                            @if(count($item->childrenRecursive) > 0)
-                            @include('backend.category.subCategory',['subcategory' => $item->childrenRecursive, 'parent'=> $item->categoryName ?? ''])
+                            @include('backend.category.subCategory',['subcategory' => $item->childrenRecursive, 'parent'=> $item->category_name ?? ''])
                            @endif
                            @endforeach
                         </select>

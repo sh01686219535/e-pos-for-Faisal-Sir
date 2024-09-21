@@ -15,7 +15,8 @@ class CategoryController extends Controller
     {
       $data = array();
       $data['active_menu'] = 'category';
-      return view('backend.category.index',compact('data'));
+      $categories = Category::with('children')->whereNull('parent_id')->get();
+      return view('backend.category.index',compact('data','categories'));
         
     }
 
@@ -36,11 +37,11 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'categoryName'=>'required'
+            'category_name'=>'required'
         ]);
       
         $category = new Category();
-        $category->categoryName = $request->categoryName;
+        $category->category_name = $request->category_name;
         if(isset($request->parent_id)){
             $category->parent_id = $request->parent_id;
         }
@@ -62,7 +63,11 @@ class CategoryController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = array();
+        $data['active_menu'] = 'category';
+        $category = Category::with('childrenRecursive')->findOrFail($id);
+        $categories = Category::with('childrenRecursive')->whereNull('parent_id')->get();
+        return view('backend.category.edit',compact('data','category','categories'));
     }
 
     /**
@@ -70,7 +75,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->category_name = $request->category_name;
+        if(isset($request->parent_id)){
+            $category->parent_id = $request->parent_id;
+        }
+        $category->save();
+        toastr()->success('Category Updated Successfully');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -78,6 +90,9 @@ class CategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $category->delete();
+        toastr()->success('Category Deleted Successfully');
+        return back();
     }
 }

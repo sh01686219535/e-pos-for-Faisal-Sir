@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('sizeForm');
 
-    const sizeName = document.getElementById('sizeName');
+    const sizeName = document.getElementById('size_name');
     const status = document.getElementById('status');
 
     const sizeNameError = document.getElementById('sizeNameError');

@@ -25,9 +25,9 @@
                    @csrf
                    @method('PUT')
                     <div class="mb-3 row">
-                        <label for="moduleName" class="col-sm-2 col-form-label">Module Name</label>
+                        <label for="module_name" class="col-sm-2 col-form-label">Module Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" value="{{$module->moduleName}}" id="moduleName" name="moduleName">
+                            <input type="text" class="form-control" value="{{$module->module_name}}" id="module_name" name="module_name">
                         </div>
                     </div>
                     <div class="form-group row">

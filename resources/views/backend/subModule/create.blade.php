@@ -6,7 +6,7 @@
     <div id="content" class="app-content p-3">
         <div class="head-main d-flex justify-content-between my-3">
             <h3>Sub Module Create</h3>
-            <a href="{{ route('subModule.index') }}" class="btn btn-info "><i class="fas fa-list"></i>Sub Module List</a>
+            <a href="{{ route('sub_module.index') }}" class="btn btn-info "><i class="fas fa-list"></i>Sub Module List</a>
         </div>
         <div class="card">
             <div class="card-header with-btn">
@@ -21,7 +21,7 @@
             </div>
             <div class="card-body">
                 @include('error')
-                <form action="{{ route('subModule.store') }}" method="post">
+                <form action="{{ route('sub_module.store') }}" method="post">
                     @csrf
                     <div class="mb-3 row">
                         <label for="module_id" class="col-sm-2 col-form-label">Module Name</label>
@@ -29,15 +29,15 @@
                             <select class="form-select" id="module_id" name="module_id">
                                 <option selected>Select Module</option>
                                 @foreach ($module as $item)
-                                <option value="{{$item->id}}">{{$item->moduleName}}</option>
+                                <option value="{{$item->id}}">{{$item->module_name}}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="subModuleName" class="col-sm-2 col-form-label">Sub Module Name</label>
+                        <label for="sub_module_name" class="col-sm-2 col-form-label">Sub Module Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="subModuleName" name="subModuleName">
+                            <input type="text" class="form-control" id="sub_module_name" name="sub_module_name">
                         </div>
                     </div>
             </div>

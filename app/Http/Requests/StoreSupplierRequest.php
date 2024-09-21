@@ -22,14 +22,14 @@ class StoreSupplierRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'supplierName' => 'required|string|max:200',
-            'supplierAddress' => 'required|string|max:300',
+            'supplier_name' => 'required|string|max:200',
+            'supplier_address' => 'required|string|max:300',
             'phone' => 'required|string',
             'email' => 'required|email|max:200',
-            'tinNumber' => 'required|string|max:200',
-            'tradeLicense' => 'required|string|max:200',
-            'bankAcNo' => 'required|string|max:200',
-            'emergencyContact' => 'required|string',
+            'tin_number' => 'required|string|max:200',
+            'trade_license' => 'required|string|max:200',
+            'bank_ac_no' => 'required|string|max:200',
+            'emergency_contact' => 'required|string',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
@@ -37,7 +37,7 @@ class StoreSupplierRequest extends FormRequest
     {
         $validator->after(function ($validator) {
             $phone = $this->input('phone');
-            $emergencyContact = $this->input('emergencyContact');
+            $emergencyContact = $this->input('emergency_contact');
 
             if ($phone == $emergencyContact) {
                 $validator->errors()->add('phone', 'Phone number and emergency contact number must be the same.');

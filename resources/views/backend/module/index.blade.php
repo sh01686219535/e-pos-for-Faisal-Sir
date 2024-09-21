@@ -31,7 +31,7 @@
                                     @foreach ($module as $item)
                                         <tr>
                                             <td>#{{ $i++ }}</td>
-                                            <td>{{ $item->moduleName }}</td>
+                                            <td>{{ $item->module_name }}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">
                                                     <a href="{{route('module.edit', $item->id)}}" class="btn btn-primary mx-1 btn-sm"><i

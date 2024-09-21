@@ -33,7 +33,7 @@ Size
                                 @foreach($size as $item)
                                 <tr>
                                     <td>#{{$i++}}</td>
-                                    <td>{{$item->sizeName}}</td>
+                                    <td>{{$item->size_name}}</td>
                                     <td>
                                         @if($item->status == 'active')
                                         <span class="badge text-bg-success">{{$item->status}}</span>

@@ -24,9 +24,9 @@
                 <form action="{{route('role.store')}}" method="post">
                    @csrf
                     <div class="mb-3 row">
-                        <label for="roleName" class="col-sm-2 col-form-label">Role Name</label>
+                        <label for="role_name" class="col-sm-2 col-form-label">Role Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="roleName" name="roleName">
+                            <input type="text" class="form-control" id="role_name" name="role_name">
                         </div>
                     </div>
                     <div class="form-group row">

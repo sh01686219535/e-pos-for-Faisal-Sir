@@ -29,15 +29,15 @@
                             <select class="form-select" id="module_id" name="module_id">
                                 <option selected>Select Module</option>
                                 @foreach ($module as $item)
-                                    <option value="{{ $item->id }}">{{ $item->moduleName }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->module_name }}</option>
                                 @endforeach
                             </select>
                         </div>
                     </div>
                     <div class="mb-3 row">
-                        <label for="subModule_id" class="col-sm-2 col-form-label">Sub Module Name</label>
+                        <label for="sub_module_id" class="col-sm-2 col-form-label">Sub Module Name</label>
                         <div class="col-sm-10">
-                            <select class="form-select" id="subModule_id" name="subModule_id">
+                            <select class="form-select" id="sub_module_id" name="sub_module_id">
                                 <option selected>Select Sub Module</option>
 
                             </select>
@@ -70,12 +70,12 @@
             $('#module_id').on('change',function(){
                 var moduleId = $(this).val();
                 $.ajax({
-                    url:"/get-subModule",
+                    url:"/get-sub_module",
                     data:{moduleId:moduleId},
                     type:'GET',
                     dataType:'json',
                     success:function(data){
-                        $('#subModule_id').html(data);
+                        $('#sub_module_id').html(data);
                     },
                     error:function(error,xhr,status){
                         console.error(xhr.responseText);

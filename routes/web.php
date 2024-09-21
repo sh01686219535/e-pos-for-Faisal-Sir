@@ -26,7 +26,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     // module route
     Route::resource('module',ModuleController::class);
     //subModule route
-    Route::resource('subModule',SubModuleController::class);
+    Route::resource('sub_module',SubModuleController::class);
     //permission route
     Route::resource('permission',PermissionController::class);
     //role Route
@@ -45,5 +45,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::resource('supplier',SupplierController::class);
     //ajax route
     //get-subModule route
-    route::get('/get-subModule',[AjaxController::class,'getSubModule'])->name('get-subModule');
+    route::get('/get-sub_module',[AjaxController::class,'getSubModule'])->name('get-sub_module');
 });

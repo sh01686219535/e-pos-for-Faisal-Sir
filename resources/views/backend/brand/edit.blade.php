@@ -28,9 +28,9 @@ Update Brand
                 @csrf
                 @method('PUT')
                 <div class="mb-3 row">
-                    <label for="brandName" class="col-sm-2 col-form-label">Brand Name</label>
+                    <label for="brand_name" class="col-sm-2 col-form-label">Brand Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="brandName" name="brandName" value="{{$brand->brandName}}">
+                        <input type="text" class="form-control" id="brand_name" name="brand_name" value="{{$brand->brand_name}}">
                         <span class="text-danger" id="brandNameError"></span>
                     </div>
                 </div>
@@ -45,11 +45,11 @@ Update Brand
                     <span class="text-danger" id="statusError"></span>
                 </div>
                 <div class="mb-3 row">
-                    <label for="brandImage" class="col-sm-2 col-form-label">Brand Image</label>
+                    <label for="brand_image" class="col-sm-2 col-form-label">Brand Image</label>
                     <div class="col-sm-10">
-                        <input type="file" class="form-control" id="brandImage" name="brandImage">
-                        @if($brand->brandImage)
-                        <img src="{{asset($brand->brandImage)}}" alt="" class="image-style rounded-circle my-3 img-height" id="showImage">
+                        <input type="file" class="form-control" id="brand_image" name="brand_image">
+                        @if($brand->brand_image)
+                        <img src="{{asset($brand->brand_image)}}" alt="" class="image-style rounded-circle my-3 img-height" id="showImage">
                         @else
                         <img id="showImage"
                             src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt=""
@@ -75,7 +75,7 @@ Update Brand
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 //Brand Image
-$('#brandImage').change('click', function(e) {
+$('#brand_image').change('click', function(e) {
     var reader = new FileReader();
     reader.onload = function(e) {
         $('#showImage').attr('src', e.target.result);

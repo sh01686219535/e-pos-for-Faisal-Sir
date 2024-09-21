@@ -27,16 +27,16 @@ Create Color
             <form action="{{ route('color.store') }}" method="post" id="brandForm">
                 @csrf
                 <div class="mb-3 row">
-                    <label for="colorName" class="col-sm-2 col-form-label">Color Name</label>
+                    <label for="color_name" class="col-sm-2 col-form-label">Color Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="colorName" name="colorName">
+                        <input type="text" class="form-control" id="color_name" name="color_name">
                         <span class="text-danger" id="colorNameError"></span>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="colorCode" class="col-sm-2 col-form-label">Color Code</label>
+                    <label for="color_code" class="col-sm-2 col-form-label">Color Code</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="colorCode" name="colorCode">
+                        <input type="text" class="form-control" id="color_code" name="color_code">
                         <span class="text-danger" id="colorCodeError"></span>
                     </div>
                 </div>

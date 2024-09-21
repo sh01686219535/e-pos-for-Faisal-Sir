@@ -33,8 +33,8 @@
                                     @foreach ($permission as $item)
                                         <tr>
                                             <td>#{{ $i++ }}</td>
-                                            <td>{{ $item->module->moduleName ?? '' }}</td>
-                                            <td>{{ $item->subModule->subModuleName ?? ''}}</td>
+                                            <td>{{ $item->module->module_name ?? '' }}</td>
+                                            <td>{{ $item->subModule->sub_module_name ?? ''}}</td>
                                             <td>{{ $item->permission}}</td>
                                             <td>
                                                 <div class="d-flex justify-content-start">

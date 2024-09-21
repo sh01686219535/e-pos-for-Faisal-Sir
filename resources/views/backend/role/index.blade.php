@@ -31,7 +31,7 @@
                                   @foreach ($role as $item)
                                   <tr>
                                       <td>#{{ $i++ }}</td>
-                                      <td>{{ $item->roleName}}</td>
+                                      <td>{{ $item->role_name}}</td>
                                       <td>
                                           <div class="d-flex justify-content-start">
                                               <a href="{{route('role.edit', $item->id)}}" class="btn btn-primary mx-1 btn-sm"><i

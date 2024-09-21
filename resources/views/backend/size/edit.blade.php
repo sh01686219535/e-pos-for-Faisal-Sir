@@ -28,9 +28,9 @@
                 @csrf
                 @method('PUT')
                 <div class="mb-3 row">
-                    <label for="sizeName" class="col-sm-2 col-form-label">Size Name</label>
+                    <label for="size_name" class="col-sm-2 col-form-label">Size Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="sizeName" name="sizeName" value="{{$size->sizeName}}">
+                        <input type="text" class="form-control" id="size_name" name="size_name" value="{{$size->size_name}}">
                         <span class="text-danger" id="sizeNameError"></span>
                     </div>
                 </div>

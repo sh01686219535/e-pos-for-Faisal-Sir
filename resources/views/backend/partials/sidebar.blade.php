@@ -42,7 +42,7 @@
                         <!--End Module -->
                         <!--Start Sub Module -->
                         <li class="menu-item {{ $data['active_menu'] == 'subModule' ? 'active' : '' }}">
-                            <a href="{{ route('subModule.index') }}" class="menu-link">
+                            <a href="{{ route('sub_module.index') }}" class="menu-link">
                                 <span class="menu-text">Sub Module</span>
                             </a>
                         </li>

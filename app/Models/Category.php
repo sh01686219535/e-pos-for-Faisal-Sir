@@ -8,11 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Category extends Model
 {
     use HasFactory;
-    protected $fillable = ['categoryName','parent_id'];
-    public function children(){
-        return $this->hasMany(Category::class,'parent_id');
+    protected $fillable = ['category_name','parent_id'];
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
     }
-    public function childrenRecursive(){
+
+    public function childrenRecursive()
+    {
         return $this->children()->with('childrenRecursive');
     }
 }

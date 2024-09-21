@@ -14,7 +14,7 @@ class Permission extends Model
     }
     
     public function subModule(){
-        return $this->belongsTo(SubModule::class, 'subModule_id');
+        return $this->belongsTo(SubModule::class, 'sub_module_id');
     }
     
 }

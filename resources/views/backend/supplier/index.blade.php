@@ -40,14 +40,14 @@ Supplier
                                 @foreach($supplier as $item)
                                 <tr>
                                     <td>#{{$i++}}</td>
-                                    <td>{{$item->supplierName}}</td>
-                                    <td>{{$item->supplierAddress}}</td>
+                                    <td>{{$item->supplier_name}}</td>
+                                    <td>{{$item->supplier_address}}</td>
                                     <td>{{$item->phone}}</td>
                                     <td>{{$item->email}}</td>
-                                    <td>{{$item->tinNumber}}</td>
-                                    <td>{{$item->tradeLicense}}</td>
-                                    <td>{{$item->bankAcNo}}</td>
-                                    <td>{{$item->emergencyContact}}</td>
+                                    <td>{{$item->tin_number}}</td>
+                                    <td>{{$item->trade_license}}</td>
+                                    <td>{{$item->bank_ac_no}}</td>
+                                    <td>{{$item->emergency_contact}}</td>
                                     <td>
                                         <img src="{{asset($item->image)}}" class="img-height-50" alt="">
                                     </td>

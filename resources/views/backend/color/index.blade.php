@@ -34,8 +34,8 @@ Color
                                 @foreach($color as $item)
                                 <tr>
                                     <td>#{{$i++}}</td>
-                                    <td>{{$item->colorName}}</td>
-                                    <td>{{$item->colorCode}}</td>
+                                    <td>{{$item->color_name}}</td>
+                                    <td>{{$item->color_code}}</td>
                                     <td>
                                         @if($item->status == 'active')
                                         <span class="badge text-bg-success">{{$item->status}}</span>

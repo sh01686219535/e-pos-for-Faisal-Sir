@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('module_id');
             $table->foreign('module_id')->references('id')->on('modules')->onDelete('cascade');
-            $table->string('subModuleName');
+            $table->string('sub_module_name');
             $table->timestamps();
         });
     }

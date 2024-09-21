@@ -27,16 +27,16 @@ Create Supplier
             <form action="{{ route('supplier.store') }}" method="post" id="brandForm" enctype="multipart/form-data">
                 @csrf
                 <div class="mb-3 row">
-                    <label for="supplierName" class="col-sm-2 col-form-label">Supplier Name</label>
+                    <label for="supplier_name" class="col-sm-2 col-form-label">Supplier Name</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="supplierName" name="supplierName">
+                        <input type="text" class="form-control" id="supplier_name" name="supplier_name">
                         <span class="text-danger" id="supplierNameError"></span>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="supplierAddress" class="col-sm-2 col-form-label">Supplier Address</label>
+                    <label for="supplier_address" class="col-sm-2 col-form-label">Supplier Address</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="supplierAddress" name="supplierAddress">
+                        <input type="text" class="form-control" id="supplier_address" name="supplier_address">
                         <span class="text-danger" id="supplierAddressError"></span>
                     </div>
                 </div>
@@ -55,30 +55,30 @@ Create Supplier
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="tinNumber" class="col-sm-2 col-form-label">Tin Number</label>
+                    <label for="tin_number" class="col-sm-2 col-form-label">Tin Number</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="tinNumber" name="tinNumber">
+                        <input type="text" class="form-control" id="tin_number" name="tin_number">
                         <span class="text-danger" id="tinNumberError"></span>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="tradeLicense" class="col-sm-2 col-form-label">trade license number</label>
+                    <label for="trade_license" class="col-sm-2 col-form-label">trade license number</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="tradeLicense" name="tradeLicense">
+                        <input type="text" class="form-control" id="trade_license" name="trade_license">
                         <span class="text-danger" id="tradeLicenseError"></span>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="bankAcNo" class="col-sm-2 col-form-label">Bank Ac No.</label>
+                    <label for="bank_ac_no" class="col-sm-2 col-form-label">Bank Ac No.</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="bankAcNo" name="bankAcNo">
+                        <input type="text" class="form-control" id="bank_ac_no" name="bank_ac_no">
                         <span class="text-danger" id="bankAcNoError"></span>
                     </div>
                 </div>
                 <div class="mb-3 row">
-                    <label for="emergencyContact" class="col-sm-2 col-form-label">Emergency Contact</label>
+                    <label for="emergency_contact" class="col-sm-2 col-form-label">Emergency Contact</label>
                     <div class="col-sm-6">
-                        <input type="text" class="form-control" id="emergencyContact" name="emergencyContact">
+                        <input type="text" class="form-control" id="emergency_contact" name="emergency_contact">
                         <span class="text-danger" id="emergencyContactError"></span>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ Create Supplier
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
 //Brand Image
-$('#brandImage').change('click', function(e) {
+$('#image').change('click', function(e) {
     var reader = new FileReader();
     reader.onload = function(e) {
         $('#showImage').attr('src', e.target.result);

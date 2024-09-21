@@ -35,10 +35,10 @@ class SizeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'sizeName'=>'required',
+            'size_name'=>'required',
         ]);
         $size = new Size();
-        $size->sizeName = $request->sizeName;
+        $size->size_name = $request->size_name;
         $size->status = $request->status;
         $size->save();
         toastr()->success('Size Created Successfully');
@@ -70,10 +70,10 @@ class SizeController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'sizeName'=>'required',
+            'size_name'=>'required',
         ]);
         $size = Size::findOrFail($id);
-        $size->sizeName = $request->sizeName;
+        $size->size_name = $request->size_name;
         $size->status = $request->status;
         $size->save();
         toastr()->success('Size Updated Successfully');

@@ -45,14 +45,14 @@ class SupplierController extends Controller
             $supplier->image = $bannerImg;
         }
         
-        $supplier->supplierName = $request->supplierName;
-        $supplier->supplierAddress = $request->supplierAddress;
+        $supplier->supplier_name = $request->supplier_name;
+        $supplier->supplier_address = $request->supplier_address;
         $supplier->phone = $request->phone;
         $supplier->email = $request->email;
-        $supplier->tinNumber = $request->tinNumber;
-        $supplier->tradeLicense = $request->tradeLicense;
-        $supplier->bankAcNo = $request->bankAcNo;
-        $supplier->emergencyContact = $request->emergencyContact;
+        $supplier->tin_number = $request->tin_number;
+        $supplier->trade_license = $request->trade_license;
+        $supplier->bank_ac_no = $request->bank_ac_no;
+        $supplier->emergency_contact = $request->emergency_contact;
         $supplier->save();
         
         toastr()->success('Supplier Created Successfully');
@@ -90,14 +90,14 @@ class SupplierController extends Controller
             $supplier->image = $bannerImg;
         }
         
-        $supplier->supplierName = $request->supplierName;
-        $supplier->supplierAddress = $request->supplierAddress;
+        $supplier->supplier_name = $request->supplier_name;
+        $supplier->supplier_address = $request->supplier_address;
         $supplier->phone = $request->phone;
         $supplier->email = $request->email;
-        $supplier->tinNumber = $request->tinNumber;
-        $supplier->tradeLicense = $request->tradeLicense;
-        $supplier->bankAcNo = $request->bankAcNo;
-        $supplier->emergencyContact = $request->emergencyContact;
+        $supplier->tin_number = $request->tin_number;
+        $supplier->trade_license = $request->trade_license;
+        $supplier->bank_ac_no = $request->bank_ac_no;
+        $supplier->emergency_contact = $request->emergency_contact;
         $supplier->save();
         
         toastr()->success('Supplier Updated Successfully');
