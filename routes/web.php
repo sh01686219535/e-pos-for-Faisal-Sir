@@ -11,6 +11,7 @@ use App\Http\Controllers\backend\SizeController;
 use App\Http\Controllers\backend\ColorController;
 use App\Http\Controllers\backend\SupplierController;
 use App\Http\Controllers\backend\CategoryController;
+use App\Http\Controllers\backend\ItemInfoController;
 use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::resource('size',SizeController::class);
     //supplier
     Route::resource('supplier',SupplierController::class);
+    //Item Info Route
+    Route::resource('item_info',ItemInfoController::class);
     //ajax route
     //get-subModule route
     route::get('/get-sub_module',[AjaxController::class,'getSubModule'])->name('get-sub_module');
