@@ -22,3 +22,14 @@ li.menu-item {
 ul li{
     list-style-type: none;
 }
+
+/* Change the color of the dropdown on focus */
+.form-control:focus {
+    border-color: #007bff !important; 
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5) !important;
+}
+
+/* Style for the options (for supported browsers) */
+select option {
+    color: black !important; 
+}

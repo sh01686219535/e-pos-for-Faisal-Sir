@@ -22,9 +22,30 @@
                         <span class="menu-text">ANALYTICS</span>
                     </a>
                 </li>
-
+                <!--Start Item info Management -->
+                <li
+                    class="menu-item has-sub {{ in_array($data['active_menu'], ['itemManagement','item_info']) ? 'active open' : '' }}">
+                    <a href="#" class="menu-link">
+                        <span class="menu-icon">
+                            <iconify-icon icon="ph:envelope-duotone"></iconify-icon>
+                        </span>
+                        <span class="menu-text">Item Management</span>
+                        <span class="menu-caret"><b class="caret"></b></span>
+                    </a>
+                    <ul class="menu-submenu">
+                        <!--Start Module -->
+                        <li class="menu-item {{ $data['active_menu'] == 'item_info' ? 'active' : '' }}">
+                            <a href="{{ route('item_info.index') }}" class="menu-link">
+                                <span class="menu-text">Item Info</span>
+                            </a>
+                        </li>
+                        <!--End Module -->
+                    </ul>
+                </li>
+                <!--End Item info Management -->
                 <!--Start Role Management -->
-                <li class="menu-item has-sub {{ in_array($data['active_menu'], ['RoleManagement', 'module', 'subModule', 'permission', 'role', 'assignPermission']) ? 'active open' : '' }}">
+                <li
+                    class="menu-item has-sub {{ in_array($data['active_menu'], ['RoleManagement', 'module', 'subModule', 'permission', 'role', 'assignPermission']) ? 'active open' : '' }}">
                     <a href="#" class="menu-link">
                         <span class="menu-icon">
                             <iconify-icon icon="ph:envelope-duotone"></iconify-icon>
@@ -46,7 +67,7 @@
                                 <span class="menu-text">Sub Module</span>
                             </a>
                         </li>
-                          <!--End Sub Module -->
+                        <!--End Sub Module -->
                         <!--Start Permission -->
                         <li class="menu-item {{ $data['active_menu'] == 'permission' ? 'active' : '' }}">
                             <a href="{{ route('permission.index') }}" class="menu-link">
@@ -67,12 +88,13 @@
                                 <span class="menu-text">Assign Permission</span>
                             </a>
                         </li>
-                         <!--End Assign Permission -->
+                        <!--End Assign Permission -->
                     </ul>
                 </li>
                 <!--End Role Management -->
                 <!-- Start Setting -->
-                <li class="menu-item has-sub {{ in_array($data['active_menu'], ['setting', 'category','brand','color','size','supplier']) ? 'active open' : '' }}">
+                <li
+                    class="menu-item has-sub {{ in_array($data['active_menu'], ['setting', 'category','brand','color','size','supplier']) ? 'active open' : '' }}">
                     <a href="#" class="menu-link">
                         <span class="menu-icon">
                             <iconify-icon icon="ph:envelope-duotone"></iconify-icon>
