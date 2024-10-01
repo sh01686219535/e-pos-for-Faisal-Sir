@@ -67,6 +67,7 @@ class CategoryController extends Controller
         $data['active_menu'] = 'category';
         $category = Category::with('childrenRecursive')->findOrFail($id);
         $categories = Category::with('childrenRecursive')->whereNull('parent_id')->get();
+        
         return view('backend.category.edit',compact('data','category','categories'));
     }
 

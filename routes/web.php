@@ -49,4 +49,5 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //ajax route
     //get-subModule route
     route::get('/get-sub_module',[AjaxController::class,'getSubModule'])->name('get-sub_module');
+    Route::get('/get-category', [AjaxController::class, 'getCategory']);
 });

@@ -31,7 +31,7 @@ Create Item
                         <label for="category_id" class=" col-form-label">Category</label>
                         <div>
                             <select class="form-control" id="category_id" name="category_id">
-                            <option value="">Select Category</option>
+                                <option value="">Select Category</option>
                                 @foreach($category as $item)
                                 <option value="{{$item->id}}">{{$item->category_name ?? ''}}</option>
                                 @endforeach
@@ -44,7 +44,7 @@ Create Item
                         <div>
                             <select class="form-control" id="sub_category_id" name="sub_category_id">
                                 <option value="">Select Sub Category</option>
-                                <option value=""></option>
+                              
                             </select>
                             <span class="text-danger" id="sub_categoryError"></span>
                         </div>
@@ -53,8 +53,8 @@ Create Item
                         <label for="brand_id" class="col-form-label">Brand</label>
                         <div>
                             <select class="form-control" id="brand_id" name="brand_id">
-                                @foreach($brand as $brands)
                                 <option value="">Select Brand</option>
+                                @foreach($brand as $brands)
                                 <option value="{{ $brands->id}}">{{ $brands->brand_name}}</option>
                                 @endforeach
                             </select>
@@ -65,8 +65,8 @@ Create Item
                         <label for="color_id" class=" col-form-label">Color</label>
                         <div>
                             <select class="form-control" id="color_id" name="color_id">
-                                @foreach($color as $colors)
                                 <option value="">Select Color</option>
+                                @foreach($color as $colors)
                                 <option value="{{ $colors->id}}">{{ $colors->color_name}}</option>
                                 @endforeach
                             </select>
@@ -77,8 +77,8 @@ Create Item
                         <label for="size_id" class="col-form-label">Size</label>
                         <div>
                             <select class="form-control" id="size_id" name="size_id">
-                                @foreach($size as $items)
                                 <option value="">Select Size</option>
+                                @foreach($size as $items)
                                 <option value="{{ $items->id}}">{{ $items->size_name}}</option>
                                 @endforeach
                             </select>
@@ -103,8 +103,8 @@ Create Item
                         <label for="supplier_id" class=" col-form-label">Supplier</label>
                         <div>
                             <select class="form-control" id="supplier_id" name="supplier_id">
-                                @foreach($supplier as $suppliers)
                                 <option value="">Select Supplier</option>
+                                @foreach($supplier as $suppliers)
                                 <option value="{{ $suppliers->id}}">{{ $suppliers->supplier_name}}</option>
                                 @endforeach
                             </select>
@@ -122,17 +122,14 @@ Create Item
                         <label for="image" class=" col-form-label">Single Image</label>
                         <div>
                             <input type="file" class="form-control" id="image" name="image">
-                            <img id="showImage1" src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt=""
-                                class="image-style rounded-circle my-3 img-height">
+                            <img id="showImage1" src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt="" class="image-style rounded-circle my-3 img-height">
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">
                         <label for="multiple_image" class=" col-form-label">multiple Image</label>
                         <div>
-                            <input type="file" class="form-control" id="multiple_image" name="multiple_image[]"
-                                multiple>
-                            <img id="showImage2" src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt=""
-                                class="image-style rounded-circle my-3 img-height">
+                            <input type="file" class="form-control" id="multiple_image" name="multiple_image[]" multiple>
+                            <img id="showImage2" src="{{ asset('backendAsset/assets/img/previewImage.png') }}" alt="" class="image-style rounded-circle my-3 img-height">
                         </div>
                     </div>
                     <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 mt-3">
@@ -152,40 +149,57 @@ Create Item
 </div>
 @endsection
 @push('js')
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
-//Single Image
-$('#image').change('click', function(e) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-        $('#showImage1').attr('src', e.target.result);
-        const imageData = e.target.result;
-        localStorage.setItem('imageData', imageData);
-    }
-    reader.readAsDataURL(e.target.files['0']);
-});
-//multiple_image Image
-$('#multiple_image').change('click', function(e) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-        $('#showImage2').attr('src', e.target.result);
-        const imageData = e.target.result;
-        localStorage.setItem('imageData', imageData);
-    }
-    reader.readAsDataURL(e.target.files['0']);
-});
-// category ajax call
-$(document).ready(function(){
-    $('#category_id').change('click',function(){
-        var category_id =  $(this).val();
+    //Single Image
+    $('#image').change('click', function(e) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#showImage1').attr('src', e.target.result);
+            const imageData = e.target.result;
+            localStorage.setItem('imageData', imageData);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+    });
+    //multiple_image Image
+    $('#multiple_image').change('click', function(e) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            $('#showImage2').attr('src', e.target.result);
+            const imageData = e.target.result;
+            localStorage.setItem('imageData', imageData);
+        }
+        reader.readAsDataURL(e.target.files['0']);
+    });
+    // category ajax call
+  
+    $(document).ready(function(){
+    $('#category_id').on('change',function(){
+        var moduleId = $(this).val();
+        
         $.ajax({
-            url : 'get-category',
+            url: "/get-category",
+            data: {moduleId: moduleId},
             type: 'GET',
-            data: {category_id,category_id},
+            dataType: 'json',
+            success: function(data) {
+                // Log the response for debugging
+                console.log(data.html); 
+
+                // Populate the #sub_category_id dropdown with the returned HTML
+                $('#sub_category_id').html(data.html);
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+            }
         });
     });
 });
-//form Validation
-@include('backend.validation.ItemInfo')
+
+
+
+    //form Validation
+    @include('backend.validation.ItemInfo')
+
 </script>
 @endpush
