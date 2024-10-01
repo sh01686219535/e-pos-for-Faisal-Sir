@@ -35,6 +35,7 @@ class AssignPermissionController extends Controller
         $data['page_title'] = 'Create Assign';
         $role = Role::all();
         $module = Module::with('subModule.permission')->get();
+     
         return view('backend.assignPermission.create', compact('data','role', 'module'));
     }
 

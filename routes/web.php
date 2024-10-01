@@ -12,6 +12,7 @@ use App\Http\Controllers\backend\ColorController;
 use App\Http\Controllers\backend\SupplierController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ItemInfoController;
+use App\Http\Controllers\backend\PermissionAssignController;
 use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
 
@@ -50,4 +51,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //get-subModule route
     route::get('/get-sub_module',[AjaxController::class,'getSubModule'])->name('get-sub_module');
     Route::get('/get-category', [AjaxController::class, 'getCategory']);
+     //access-control
+     Route::get('/access-control', [PermissionAssignController::class, 'showAccessControl'])->name('access-control');
+     Route::post('/access-control', [PermissionAssignController::class, 'accessControl'])->name('accessControl');
+     Route::get('/add-assign-permission', [PermissionAssignController::class, 'addAssignPermission'])->name('add-assign-permission');
+     Route::get('/edit-assign-permission/{id}', [PermissionAssignController::class, 'showEditAssignPermission'])->name('showEdit-assign-permission');
+     Route::post('/edit-assign-permission', [PermissionAssignController::class, 'editAssignPermission'])->name('edit-assign-permission');
+     Route::get('/delete-assign-permission/{id}', [PermissionAssignController::class, 'deleteAssignPermission'])->name('delete-assign-permission');
 });

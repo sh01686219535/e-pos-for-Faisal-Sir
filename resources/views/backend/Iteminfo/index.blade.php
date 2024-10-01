@@ -21,20 +21,44 @@ Item Info
                             <thead>
                                 <tr>
                                     <th>S/N</th>
+                                    <th>Category</th>
+                                    <th>Sub Category</th>
+                                    <th>Brand</th>
                                     <th>Name</th>
-                                    <th>Address</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
-                                    <th>Tin Number</th>
-                                    <th>Trade Number</th>
-                                    <th>Bank Ac No.</th>
-                                    <th>Emergency</th>
+                                    <th>Supplier</th>
                                     <th>Image</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                           
+                                @php
+                                $i = 1;
+                                @endphp
+                                @foreach($itemInfo as $item)
+                                <tr>
+                                    <td>{{$i++}}</td>
+                                    <td>{{$item->category->category_name ?? ''}}</td>
+                                    <td>{{$item->category->category_name ?? ''}}</td>
+                                    <td>{{$item->brand->brand_name ?? ''}}</td>
+                                    <td>{{$item->name}}</td>
+                                    <td>{{$item->supplier->supplier_name ?? ''}}</td>
+                                    <td>
+                                        <img src="{{asset($item->image)}}" class="img-height-50" alt="">
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-start">
+                                            <a href="{{route('item_info.edit', $item->id)}}"
+                                                class="btn btn-primary mx-1 btn-sm"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('item_info.destroy', $item->id) }}" method="post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit" class="btn btn-danger delete-item  btn-sm"><i
+                                                        class="fas fa-trash"></i></button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>

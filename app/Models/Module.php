@@ -9,8 +9,11 @@ class Module extends Model
 {
     use HasFactory;
     protected $guarded = [];
-    public function subModule()
-    {
-        return $this->hasMany(SubModule::class, 'module_id');
+
+    public function SubModule(){
+        return $this->hasMany(SubModule::class,'module_id','id');
+    }
+    public function permission(){
+        return $this->hasMany(Permission::class);
     }
 }

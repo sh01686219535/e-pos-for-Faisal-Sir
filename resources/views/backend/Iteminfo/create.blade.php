@@ -24,7 +24,7 @@ Create Item
         </div>
         <div class="card-body p-4">
             @include('error')
-            <form action="{{ route('item_info.store') }}" method="post" id="brandForm" enctype="multipart/form-data">
+            <form action="{{ route('item_info.store') }}" method="post" id="Item-info-form" enctype="multipart/form-data">
                 @csrf
                 <div class="row">
                     <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4">

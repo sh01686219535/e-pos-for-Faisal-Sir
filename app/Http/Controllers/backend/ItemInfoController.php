@@ -9,9 +9,14 @@ use App\Models\Brand;
 use App\Models\Color;
 use App\Models\Size;
 use App\Models\Supplier;
+use App\Models\ItemInfo;
+use App\Http\Requests\ItemInfoRequest;
+use App\Traits\ImageUploadTrait;
+use File;
 
 class ItemInfoController extends Controller
 {
+    use ImageUploadTrait;
     /**
      * Display a listing of the resource.
      */
@@ -19,7 +24,8 @@ class ItemInfoController extends Controller
     {
         $data = array();
         $data['active_menu'] = 'item_info';
-        return view('backend.Iteminfo.index',compact('data'));
+        $itemInfo = ItemInfo::with('category', 'brand', 'color', 'size', 'supplier')->get();
+        return view('backend.Iteminfo.index',compact('data','itemInfo'));
     }
 
     /**
@@ -41,9 +47,32 @@ class ItemInfoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ItemInfoRequest $request)
     {
-        //
+       $itemInfo = new ItemInfo();
+       $itemInfo->category_id = $request->category_id; 
+       $itemInfo->sub_category_id = $request->sub_category_id; 
+       $itemInfo->brand_id = $request->brand_id; 
+       $itemInfo->color_id = $request->color_id; 
+       $itemInfo->size_id = $request->size_id; 
+       $itemInfo->name = $request->name; 
+       $itemInfo->code = $request->code; 
+       $itemInfo->supplier_id = $request->supplier_id; 
+       $itemInfo->description = $request->description; 
+       if ($request->hasFile('image')) {
+        $itemSingleImg = $this->uploadImage($request,'image','ItemInfoSingleImg');
+        $itemInfo->image = $itemSingleImg;
+       }
+       if ($request->hasFile('multiple_image')) {
+        $itemMultiImg = $this->multipleImgUpload($request,'multiple_image','ItemInfoMultiImg');
+        foreach ($itemMultiImg as $value) {
+            $itemInfo->multiple_image = $value;
+        }
+       }
+       $itemInfo->save();
+
+       toastr()->success('Item Info Created Successfully');
+       return redirect()->route('item_info.index');
     }
 
     /**
@@ -75,6 +104,27 @@ class ItemInfoController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $itemInfo = ItemInfo::find($id);
+    
+        // if ($itemInfo->image && File::exists(public_path($itemInfo->image))) {
+        //     File::delete(public_path($itemInfo->image));
+        // }
+    
+        if ($itemInfo->multiple_image) {
+            $images = json_decode($itemInfo->multiple_image, true); 
+    
+            if (is_array($images)) { 
+                foreach ($images as $image) {
+                    if (File::exists(public_path($image))) {
+                        File::delete(public_path($image));
+                    }
+                }
+            }
+        }
+    
+        $itemInfo->delete();
+        
+        toastr()->success('ItemInfo Deleted Successfully');
+        return back();
     }
 }
