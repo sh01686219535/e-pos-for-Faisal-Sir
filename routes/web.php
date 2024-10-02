@@ -13,6 +13,8 @@ use App\Http\Controllers\backend\SupplierController;
 use App\Http\Controllers\backend\CategoryController;
 use App\Http\Controllers\backend\ItemInfoController;
 use App\Http\Controllers\backend\PermissionAssignController;
+use App\Http\Controllers\backend\ItemCostInfoController;
+use App\Http\Controllers\backend\ItemPriceController;
 use App\Http\Controllers\ModuleController;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +49,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     Route::resource('supplier',SupplierController::class);
     //Item Info Route
     Route::resource('item_info',ItemInfoController::class);
+    //Item Cost Info Route
+    Route::resource('item_cost_info',ItemCostInfoController::class);
+    //Item Price Route
+    Route::resource('item_price',ItemPriceController::class);
     //ajax route
     //get-subModule route
     route::get('/get-sub_module',[AjaxController::class,'getSubModule'])->name('get-sub_module');
