@@ -64,11 +64,9 @@ class ItemInfoController extends Controller
         $itemInfo->image = $itemSingleImg;
        }
        if ($request->hasFile('multiple_image')) {
-        $itemMultiImg = $this->multipleImgUpload($request,'multiple_image','ItemInfoMultiImg');
-        foreach ($itemMultiImg as $value) {
-            $itemInfo->multiple_image = $value;
-        }
-       }
+        $itemMultiImg = $this->multipleImgUpload($request, 'multiple_image', 'ItemInfoMultiImg');
+        $itemInfo->multiple_image = implode(',', $itemMultiImg);
+    }
        $itemInfo->save();
 
        toastr()->success('Item Info Created Successfully');
@@ -104,27 +102,26 @@ class ItemInfoController extends Controller
      */
     public function destroy(string $id)
     {
-        $itemInfo = ItemInfo::find($id);
-    
-        // if ($itemInfo->image && File::exists(public_path($itemInfo->image))) {
-        //     File::delete(public_path($itemInfo->image));
-        // }
+        $itemInfo = ItemInfo::findOrFail($id);
+        
+        if ($itemInfo->image && File::exists(public_path($itemInfo->image))) {
+            File::delete(public_path($itemInfo->image));
+        }
     
         if ($itemInfo->multiple_image) {
-            $images = json_decode($itemInfo->multiple_image, true); 
-    
-            if (is_array($images)) { 
-                foreach ($images as $image) {
-                    if (File::exists(public_path($image))) {
-                        File::delete(public_path($image));
-                    }
+            $images = explode(',', $itemInfo->multiple_image);
+            foreach ($images as $image) {
+                $imagePath = public_path('ItemInfoMultiImg/' . trim($image));
+                if (File::exists($imagePath)) {
+                    File::delete($imagePath);
                 }
             }
         }
-    
+        // Delete the item info record
         $itemInfo->delete();
-        
-        toastr()->success('ItemInfo Deleted Successfully');
+    
+        // Show success message
+        toastr()->success('ItemInfo and all associated images deleted successfully');
         return back();
     }
 }

@@ -183,10 +183,6 @@ Create Item
             type: 'GET',
             dataType: 'json',
             success: function(data) {
-                // Log the response for debugging
-                console.log(data.html); 
-
-                // Populate the #sub_category_id dropdown with the returned HTML
                 $('#sub_category_id').html(data.html);
             },
             error: function(xhr, status, error) {
@@ -195,9 +191,6 @@ Create Item
         });
     });
 });
-
-
-
     //form Validation
     @include('backend.validation.ItemInfo')
 

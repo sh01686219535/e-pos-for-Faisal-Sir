@@ -30,19 +30,21 @@ trait ImageUploadTrait{
         }
         return $oldPth; 
     }
-   private function multipleImgUpload(Request $request, $key, $path)
+    private function multipleImgUpload(Request $request, $key, $path)
     {
         $imgPth = [];
+    
         if($request->hasFile($key)) {
             foreach ($request->file($key) as $file) {
-                $filename = time() . '_' . $file->getClientOriginalName();
+                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
+    
                 $file->move(public_path($path), $filename);
-                $imgPth[] = $path . '/' . $filename;
+
+                $imgPth[] = $filename;
             }
         }
-        return $imgPth;
+        return $imgPth; 
     }
-    
-    
+      
 }
 ?>
