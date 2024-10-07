@@ -34,7 +34,7 @@
                     </a>
                     <ul class="menu-submenu">
                         <!--Start Item Info -->
-                        <li class="menu-item {{ $data['active_menu'] == 'item_info' ? 'active' : '' }}">
+                        <li class="menu-item {{ $data['active_menu'] == 'item_price_discount','item_info' ? 'active' : '' }}">
                             <a href="{{ route('item_info.index') }}" class="menu-link">
                                 <span class="menu-text">Item Info</span>
                             </a>
@@ -51,6 +51,13 @@
                         <li class="menu-item {{ $data['active_menu'] == 'item_price' ? 'active' : '' }}">
                             <a href="{{ route('item_price.index') }}" class="menu-link">
                                 <span class="menu-text">Item Price</span>
+                            </a>
+                        </li>
+                        <!--End Item Price -->
+                        <!--Start Item Price -->
+                        <li class="menu-item {{ $data['active_menu'] == 'item_price_discount' ? 'active' : '' }}">
+                            <a href="{{ route('item_price_discount.index') }}" class="menu-link">
+                                <span class="menu-text">Item Price Discount</span>
                             </a>
                         </li>
                         <!--End Item Price -->

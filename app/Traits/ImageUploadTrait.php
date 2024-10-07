@@ -16,21 +16,32 @@ trait ImageUploadTrait{
     public function updadeImage(Request $request, $inputName, $path, $oldPth = null)
     {
         if ($request->hasFile($inputName)) {
-          
             if ($oldPth && File::exists(public_path($oldPth))) {
                 File::delete(public_path($oldPth));
             }
-
             $image = $request->file($inputName);
             $extension = $image->getClientOriginalExtension();
             $imageName = 'media_' . uniqid() . '.' . $extension;
             $image->move(public_path($path), $imageName);
-            
             return $path . '/' . $imageName;
         }
-        return $oldPth; 
+        return $oldPth;
     }
+    
     private function multipleImgUpload(Request $request, $key, $path)
+    {
+        $imgPth = [];
+    
+        if($request->hasFile($key)) {
+            foreach ($request->file($key) as $file) {
+                $filename = time() . '_' . uniqid() . '_' . $file->getClientOriginalName();
+                $file->move(public_path($path), $filename);
+                $imgPth[] = $filename;
+            }
+        }
+        return $imgPth; 
+    }
+    private function multipleImgUpdate(Request $request, $key, $path)
     {
         $imgPth = [];
     

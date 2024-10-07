@@ -86,16 +86,62 @@ class ItemInfoController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = array();
+        $data['active_menu'] = 'item_info';
+        $category = Category::where('parent_id', null)->get();
+        $subCategory = Category::whereNot('parent_id', null)->get();
+        $brand = Brand::where('status', 'active')->get();
+        $color = Color::where('status', 'active')->get();
+        $size = Size::where('status', 'active')->get();
+        $supplier = Supplier::all();
+        $itemInfo = ItemInfo::with('category', 'brand', 'color', 'size', 'supplier')->findOrFail($id);
+        return view('backend.Iteminfo.edit',compact('itemInfo','data','category','subCategory','brand','color','size','supplier'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
-    {
-        //
+{
+    // Retrieve the existing item from the database
+    $itemInfo = ItemInfo::findOrFail($id);
+    
+    // Update the basic fields
+    $itemInfo->category_id = $request->category_id; 
+    $itemInfo->sub_category_id = $request->sub_category_id; 
+    $itemInfo->brand_id = $request->brand_id; 
+    $itemInfo->color_id = $request->color_id; 
+    $itemInfo->size_id = $request->size_id; 
+    $itemInfo->name = $request->name; 
+    $itemInfo->code = $request->code; 
+    $itemInfo->supplier_id = $request->supplier_id; 
+    $itemInfo->description = $request->description;
+
+    if ($request->hasFile('image')) {
+        $itemSingleImg = $this->updadeImage($request, 'image', 'ItemInfoSingleImg', $itemInfo->image); 
+    
+        $itemInfo->image = $itemSingleImg;
     }
+    if ($request->hasFile('multiple_image')) {
+        if ($itemInfo->multiple_image) {
+            $oldImages = explode(',', $itemInfo->multiple_image);
+            foreach ($oldImages as $oldImage) {
+                $oldImagePath = public_path('ItemInfoMultiImg/' . trim($oldImage));
+                if (File::exists($oldImagePath)) {
+                    File::delete($oldImagePath);
+                }
+            }
+        }
+        $itemMultiImg = $this->multipleImgUpdate($request, 'multiple_image', 'ItemInfoMultiImg');
+        $itemInfo->multiple_image = implode(',', $itemMultiImg); // Store new images as comma-separated string
+    }
+    
+    // Save the updated item info
+    $itemInfo->save();
+
+    toastr()->success('Item Info Updated Successfully');
+    return redirect()->route('item_info.index');
+}
 
     /**
      * Remove the specified resource from storage.
