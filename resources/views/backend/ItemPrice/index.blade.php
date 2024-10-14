@@ -10,7 +10,7 @@ Item Cost
                 <div class="card-head">
                     <div class="head-main d-flex justify-content-between">
                         <h3>Item Cost</h3>
-                        <a href="{{ route('item_cost_info.create') }}" class="btn btn-info"><i class="fas fa-plus"></i>
+                        <a href="{{ route('item_price.create') }}" class="btn btn-info"><i class="fas fa-plus"></i>
                             Create</a>
                     </div>
                 </div>

@@ -45,9 +45,6 @@ Create Item Price
                         <div>
                             <select class="form-control" id="item_cost_id" name="item_cost_id">
                                 <option value="">Select Cost</option>
-                                @foreach($itemInfoCost as $item)
-                                <option value="{{$item->id}}">{{$item->total_Purchase_cost}}</option>
-                                @endforeach
                             </select>
                             <span class="text-danger" id="item_cost_Error"></span>
                         </div>
@@ -78,7 +75,23 @@ Create Item Price
 @push('js')
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-
+        $(document).ready(function(){
+            $('#item_info_id').on('change',function(){
+                var InfoId = $(this).val();
+                $.ajax({
+                    url:"/get_sub_cost",
+                    data:{InfoId:InfoId},
+                    type:'GET',
+                    dataType:'json',
+                    success:function(data){
+                        $('#item_cost_id').html(data);
+                    },
+                    error:function(error,xhr,status){
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
 @include('backend.validation.itemprice')
 </script>
 @endpush

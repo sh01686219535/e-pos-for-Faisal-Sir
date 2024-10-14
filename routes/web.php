@@ -60,6 +60,8 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified',])
     //get-subModule route
     route::get('/get-sub_module',[AjaxController::class,'getSubModule'])->name('get-sub_module');
     Route::get('/get-category', [AjaxController::class, 'getCategory']);
+    Route::get('/get_sub_cost', [AjaxController::class, 'getSubCost']);
+    Route::get('/get_item_all', [AjaxController::class, 'getItemAllInfo']);
      //access-control
      Route::get('/access-control', [PermissionAssignController::class, 'showAccessControl'])->name('access-control');
      Route::post('/access-control', [PermissionAssignController::class, 'accessControl'])->name('accessControl');

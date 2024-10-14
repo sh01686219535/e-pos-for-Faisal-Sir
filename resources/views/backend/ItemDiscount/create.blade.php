@@ -41,29 +41,30 @@ Create Price Discount
                         </div>
                     </div>
                     <div class="col-sm-8 col-md-6 col-lg-6 col-xl-6">
-                        <label for="item_cost_id" class=" col-form-label">Item Info</label>
+                        <label for="item_cost_id" class=" col-form-label">Item Info Cost</label>
                         <div>
                             <select class="form-control" id="item_cost_id" name="item_cost_id">
                                 <option value="">Select Item</option>
-                                @foreach($itemInfoCost as $item)
+                                <!-- @foreach($itemInfoCost as $item)
                                 <option value="{{$item->id}}">{{$item->total_Purchase_cost}}</option>
-                                @endforeach
+                                @endforeach -->
                             </select>
                             <span class="text-danger" id="item_cost_Error"></span>
                         </div>
                     </div>
                     <div class="col-sm-8 col-md-6 col-lg-6 col-xl-6">
-                        <label for="item_price_id" class=" col-form-label">Item Info</label>
+                        <label for="item_price_id" class=" col-form-label">Item Info Price</label>
                         <div>
                             <select class="form-control" id="item_price_id" name="item_price_id">
-                                <option value="">Select Item</option>
-                                @foreach($ItemPrice as $item)
+                                <option value="">Select Price</option>
+                                <!-- @foreach($ItemPrice as $item)
                                 <option value="{{$item->id}}">{{$item->item_price}}</option>
-                                @endforeach
+                                @endforeach -->
                             </select>
                             <span class="text-danger" id="item_price_Error"></span>
                         </div>
                     </div>
+                
                     <div class="col-sm-8 col-md-6 col-lg-6 col-xl-6">
                         <label for="discount_amount" class=" col-form-label">Discount Amount</label>
                         <div>
@@ -102,7 +103,6 @@ Create Price Discount
                             </div>
                         </div>
                     </div>
-                   
                     <div class="form-group row mt-3">
                         <div class="col-sm-2 col-md-2 col-lg-2 col-xl-2">
                             <button type="submit" class="btn btn-outline-theme">Submit</button>
@@ -121,8 +121,6 @@ Create Price Discount
 @push('js')
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
-$(document).ready(function() {
-
     $(document).ready(function() {
         function calculateTotalCost() {
             var purchase_price = parseFloat($('#discount_amount').val()) || 0;
@@ -151,7 +149,24 @@ $(document).ready(function() {
             });
     });
 
-});
+    $(document).ready(function(){
+            $('#item_info_id').on('change',function(){
+                var InfoId = $(this).val();
+                $.ajax({
+                    url:"/get_item_all",
+                    data:{InfoId:InfoId},
+                    type:'GET',
+                    dataType:'json',
+                    success:function(data){
+                        $('#item_cost_id').html(data);
+                        $('#item_price_id').html(data);
+                    },
+                    error:function(error,xhr,status){
+                        console.error(xhr.responseText);
+                    }
+                });
+            });
+        });
 @include('backend.validation.itemcost')
 </script>
 @endpush
